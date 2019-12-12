@@ -1,0 +1,16 @@
+#!/bin/sh
+
+rm_file_if_exists () {
+  [ -e $1 ] && rm -rf $1
+}
+
+link_file () {
+  rm_file_if_exists $2
+  ln -s $1 $2
+}
+
+link_dotfile () {
+  link_file $PWD/$1 $HOME/$1
+}
+
+link_dotfile '.vimrc'
